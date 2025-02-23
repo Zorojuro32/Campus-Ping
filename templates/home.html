@@ -71,15 +71,14 @@
             </div>
         </div>
     </div>
-    
-    <div class="dashboard">
-        <div id="search" class="content-section" style="display: none;">
-            <div class="main-content">
-                <div class="card">
-                    <input type="text">
 
-                </div>
+    <div class="dashboard">
+
+        <div id="search" class="content-section" style="display: none;">
+            <div id="search-bar">
+                <input type="text" id="search-input" placeholder="Search users...">
             </div>
+            <div id="search-results"></div>
         </div>
 
         <div id="announcements" class="content-section active" style="display: block;">
@@ -311,7 +310,7 @@
         var socket = io.connect("http://127.0.0.1:5000");
 
         function sendMessage() {
-            let message = document.getElementById("message-input").value; 
+            let message = document.getElementById("message-input").value;
             let senderName = "{{ session['name'] }}";
             let senderId = "{{ session['uid'] }}";
 
@@ -322,7 +321,7 @@
                     sender_id: senderId
                 });
 
-                document.getElementById("message-input").value = ""; 
+                document.getElementById("message-input").value = "";
             }
         }
 
@@ -380,6 +379,46 @@
                 closeProfile();
             }
         }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const searchInput = document.querySelector("#search-input");
+            const searchResults = document.querySelector("#search-results");
+
+            searchInput.addEventListener("input", function () {
+                let query = searchInput.value.trim();
+
+                if (query.length === 0) {
+                    searchResults.innerHTML = "";
+                    searchResults.style.display = "none";
+                    return;
+                }
+
+                fetch(`/search?query=${encodeURIComponent(query)}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        searchResults.innerHTML = "";
+                        searchResults.style.display = "block";
+
+                        if (data.status === "success") {
+                            data.users.forEach(user => {
+                                let userDiv = document.createElement("div");
+                                userDiv.classList.add("user-item");
+                                userDiv.innerHTML = `
+                            <img src="${user.profile_photo}" alt="Profile" class="profile-img">
+                            <div class="user-info">
+                                <p><strong>${user.name}</strong></p>
+                                <p>Age: ${user.age} | Dept: ${user.department}</p>
+                            </div>
+                        `;
+                                searchResults.appendChild(userDiv);
+                            });
+                        } else {
+                            searchResults.innerHTML = `<p class="error">${data.message}</p>`;
+                        }
+                    })
+                    .catch(error => console.error("Error fetching search results:", error));
+            });
+        });
     </script>
 
 </body>
