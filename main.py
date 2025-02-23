@@ -157,4 +157,4 @@ def upload_photo():
 
 
 if __name__ == '__main__':
-    socketio.run(app, debug=True)
+    socketio.run(app, debug=True, port=3000)
