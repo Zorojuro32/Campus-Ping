@@ -13,7 +13,7 @@ socketio = SocketIO(app)
 UPLOAD_FOLDER = "static/uploads" 
 app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
 
-db = mysql.connector.connect(host="localhost",user="root", port=3306,password="HydraSql_008",database="campusping")
+db = mysql.connector.connect(host="sql12.freesqldatabase.com", port=3306 ,user="sql12764264",password="b3yUICBLKL",database="sql12764264")
 cursor = db.cursor()
 
 
