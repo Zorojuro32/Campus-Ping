@@ -1,0 +1,127 @@
+body {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, #360033, #0b8793);
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.text-container{
+  position: absolute;
+  font-size: 4rem;
+  color: #fff;
+  font-family: "Protest Riot", serif;
+  font-weight: 400;
+  font-style: normal;
+  text-align: center;
+  letter-spacing: 2px;
+  transition: opacity 1.5s ease;
+  z-index: 2;
+}
+
+.text-black {
+  color: black !important;
+  opacity: 1 !important;
+  animation: fadeInOut 3s ease-in-out;
+  z-index: 3;
+}
+
+.shuriken {
+  position: absolute;
+  top: 50%;
+  left: -4em;
+  transform: translateY(-50%);
+  font-size: 4rem;
+  color: white;
+  animation: moveShuriken 3s ease-in-out forwards;
+  z-index: 3;
+}
+
+@keyframes moveShuriken {
+  0% { left: -4em; opacity: 1; }
+  50% { left: 50%; opacity: 1; }
+  100% { left: 110%; opacity: 1; }
+}
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  opacity: 0;
+  animation: fadeIn 1s ease-in-out forwards;
+  animation-delay: 3.2s; 
+  z-index: 2;
+}
+
+.login-box {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 12px;
+  padding: 50px;
+  width: 380px;
+  text-align: center;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.login-box h2 {
+  color: #ffffff;
+  font-size: 26px;
+  margin-bottom: 10px;
+}
+
+.login-box p {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 6px;
+  outline: none;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  font-size: 16px;
+  text-align: center;
+  transition: 0.3s;
+}
+
+input:focus {
+  background: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+}
+
+.login-btn {
+  width: 100%;
+  padding: 12px;
+  margin-top: 15px;
+  border: none;
+  border-radius: 6px;
+  background: linear-gradient(90deg, #1a2a6c, #b21f1f);
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.login-btn:hover {
+  background: linear-gradient(90deg, #b21f1f, #1a2a6c);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}

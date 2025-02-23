@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Campus Ping</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+        crossorigin="anonymous" />
+    <link rel="stylesheet" href="{{url_for('static', filename='css/home.css')}}" />
+</head>
+
+<body>
+    <video autoplay loop muted playsinline id="bg-video">
+        <source src="{{url_for('static', filename='videos/background.mp4')}}" type="video/mp4">
+        Your browser does not support the video tag.
+
+    </video>
+
+    <div class="nav-bar">
+        <div class="center-items">
+            <button><i class="fas fa-home"></i></button>
+            <div class="round-button"><i class="fas fa-compass"></i></div>
+            <button onclick="showSection('search')"><i class="fas fa-search"></i></button>
+            <button><i class="fas fa-plus"></i></button>
+            <button><i class="fas fa-user"></i></button>
+        </div>
+
+        <div class="right-items">
+            <button class="round-button">🔔</button>
+            <button class="round-button">⚙️</button>
+            <img src="{{ profile_photo }}" alt="Profile" class="profile-pic" onclick="openProfile()">
+        </div>
+    </div>
+
+    <div class="sidebar">
+        <div class="sidebar-title">Campus Ping</div>
+        <ul class="sidebar-list">
+            <div class="sidebar-heading">The Wall</div>
+            <li onclick="showSection('announcements')"><i class="fas fa-bullhorn"></i> Announcements</li>
+            <li onclick="showSection('quick-reads')"><i class="fas fa-book-open"></i> Quick Reads</li>
+            <li onclick="showSection('chill-chat')"><i class="fas fa-comments"></i> Chill Chat Zone</li>
+
+            <div class="sidebar-heading">Interest Group</div>
+            <li onclick="showSection('travel-photography')"><i class="fas fa-camera"></i> Travel and Photography</li>
+            <li onclick="showSection('organize-events')"><i class="fas fa-calendar-alt"></i> Organize Events</li>
+            <li onclick="showSection('pop-culture')"><i class="fas fa-music"></i> POP Culture</li>
+
+            <div class="sidebar-heading">Let's Get Technical</div>
+            <li onclick="showSection('alumni-contact')"><i class="fas fa-user-graduate"></i> Alumni Contact</li>
+            <li onclick="showSection('tech-members')"><i class="fas fa-users"></i> Tech Members</li>
+            <li onclick="showSection('tech-posts')"><i class="fas fa-code"></i> Tech Posts</li>
+            <li onclick="showSection('tech-chat')"><i class="fas fa-comments"></i> Tech Chat</li>
+        </ul>
+    </div>
+
+    <div id="profileModal" class="modal" onclick="closeProfile()">
+        <div class="modal-content" onclick="event.stopPropagation();">
+            <span class="close" onclick="closeProfile()">&times;</span>
+            <div class="profile-header">
+                <div class="banner"></div>
+                <img src="{{ profile_photo }}" class="modal-profile-pic" alt="Profile">
+            </div>
+            <div class="profile-details">
+                <h2>{{ name }}</h2>
+                <p class="username">{{department}}</p>
+                <div class="about">
+                    <h3>About Me</h3>
+                    <p>Age: {{age}} <br>Watashi wa zennō no kamidesu</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="dashboard">
+        <div id="search" class="content-section" style="display: none;">
+            <div class="main-content">
+                <div class="card">
+                    <input type="text">
+
+                </div>
+            </div>
+        </div>
+
+        <div id="announcements" class="content-section active" style="display: block;">
+            <div class="main-content">
+                <div class="post">
+                    <h2>Game of thrones</h2>
+                    <p> A throne is won by sword not by alliance alone</p>
+                    <img src="{{url_for('static', filename='images/game1.jpg')}}" alr="game1">
+                </div>
+                <div class="post">
+                    <h2>Tresure Hunt</h2>
+                    <p> Classroom to cafeteria, Labs to Library! THE HUNT BEGINS!!</p>
+                    <img src="{{url_for('static', filename='images/game2.jpg')}}" alr="game1">
+                </div>
+                <div class="post">
+                    <h2>MINUTE MAHOTSAV</h2>
+                    <p> Minute mahotsav </p>
+                    <img src="{{url_for('static', filename='images/game3.jpg')}}" alr="game1">
+                </div>
+                <div class="post">
+                    <h2>E-SPORTS</h2>
+                    <p> BGMI FREEFIRE COD </p>
+                    <img src="{{url_for('static', filename='images/game4.jpg')}}" alr="game1">
+                </div>
+                <div class="post">
+                    <h2>ESCAPE ROOM</h2>
+                    <p> ESCAPE THE MATRIX </p>
+                    <img src="{{url_for('static', filename='images/game5.jpg')}}" alr="game1">
+                </div>
+                <div class="post">
+                    <h2>ADVENTURE CARTWHEEL</h2>
+                    <p> Adventure cart wheel </p>
+                    <img src="{{url_for('static', filename='images/game6.jpg')}}" alr="game1">
+                </div>
+                <div class="post">
+                    <h2>BOLLYWOOD SHOWDOWN</h2>
+                    <p> Latent sasta copy </p>
+                    <img src="{{url_for('static', filename='images/game7.jpg')}}" alr="game1">
+                </div>
+                <div class="post">
+                    <h2>BLIND VOLLYBALL</h2>
+                    <p> Vollyball </p>
+                    <img src="{{url_for('static', filename='images/game8.jpg')}}" alr="game1">
+                </div>
+                <div class="post">
+                    <h2>BOX CRICKET</h2>
+                    <p> play ball bat </p>
+                    <img src="{{url_for('static', filename='images/game9.jpg')}}" alr="game1">
+                </div>
+                <div class="post">
+                    <h2>ABHIVYAKTI</h2>
+                    <p> Paint </p>
+                    <img src="{{url_for('static', filename='images/game10.jpg')}}" alr="game1">
+                </div>
+            </div>
+        </div>
+
+        <div id="quick-reads" class="content-section" style="display: none;">
+            <div class="main-content">
+                <h1 class="section-title"> Quick Read: Explore Something New!</h1>
+                <div class="quick-reads-grid"></div>
+                <div class="card">
+                    <h2>⚡ Solid-State Batteries</h2>
+                    <p>
+                        A next-gen battery technology with **higher energy density**, **faster charging**, and **safer
+                        operation**.
+                        🔥 Companies like **Toyota, QuantumScape, and BMW** are leading the charge!
+                    </p>
+                </div>
+                <div class="card">
+                    <h2>🌱 Green Hydrogen</h2>
+                    <p>
+                        A **zero-carbon fuel** produced using renewable energy.
+                        🚢 Can **decarbonize heavy industries** like steel, shipping, and aviation.
+                        🌍 Backed by **Germany, Japan, Siemens Energy, and Plug Power**!
+                    </p>
+                </div>
+                <div class="card">
+                    <h2>🔬 AI-Powered Drug Discovery</h2>
+                    <p>
+                        AI is revolutionizing medicine by **predicting new drugs faster** than ever!
+                        💊 Companies like **DeepMind and Moderna** are pioneering this innovation.
+                    </p>
+                </div>
+                <div class="card">
+                    <h2>🎮 The Rise of Cloud Gaming</h2>
+                    <p>
+                        No more high-end PCs! **Cloud gaming** lets you play AAA titles **anywhere, anytime**.
+                        🎭 Google Stadia, NVIDIA GeForce Now, and Xbox Cloud Gaming are making this a reality.
+                    </p>
+                </div>
+                <div class="card">
+                    <h2>🧠 Brain-Computer Interfaces</h2>
+                    <p>
+                        **What it is:** A technology that allows direct communication between the brain and computers.
+                        🎯 Used for **controlling devices with thoughts**—from prosthetics to gaming!
+                        🏥 Companies like **Neuralink and Synchron** are pioneering this future.
+                    </p>
+                </div>
+                <div class="card">
+                    <h2>🔋 Nuclear Fusion Energy</h2>
+                    <p>
+                        **What it is:** The holy grail of energy—**creating power like the Sun** using nuclear fusion.
+                        🌍 **Unlimited clean energy** with no dangerous waste.
+                        🔥 ITER, Helion, and TAE Technologies are **pushing fusion to reality**.
+                    </p>
+                </div>
+                <div class="card">
+                    <h2>🤖 Rise of Humanoid Robots</h2>
+                    <p>
+                        **What it is:** AI-powered robots designed to interact like humans.
+                        🚶 Boston Dynamics, Tesla Optimus, and Ameca are leading in **robotic evolution**.
+                        🎭 Expect **robot assistants in homes, industries, and entertainment** soon!
+                    </p>
+                </div>
+                <div class="card">
+                    <h2>📡 5G & 6G Networks</h2>
+                    <p>
+                        **What it is:** The next generation of ultra-fast, low-latency wireless technology.
+                        🚀 5G is revolutionizing **gaming, VR, and smart cities**.
+                        🌐 **6G** could bring **holographic communication & AI-powered connectivity**.
+                    </p>
+                </div>
+                <div class="card">
+                    <h2>🌍 Biodegradable Electronics</h2>
+                    <p>
+                        **What it is:** Electronic devices that decompose after use—reducing e-waste.
+                        💡 Scientists are developing **temporary circuits for medical implants & sensors**.
+                        🔬 Researchers at MIT and Stanford are making tech **eco-friendly & futuristic**.
+                    </p>
+                </div>
+                <div class="card">
+                    <h2>⚛️ Quantum Computing</h2>
+                    <p>
+                        **What it is:** Super-powerful computers using **quantum bits (qubits)** instead of binary.
+                        🚀 Can **solve complex problems** in minutes that take years for normal computers.
+                        🏆 Google, IBM, and Intel are **leading the race** in quantum breakthroughs.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+
+        <div id="chill-chat" class="content-section" style="display: none;">
+            <div class="chat-container">
+                <div class="chat-box" id="chat-box"></div>
+                <div class="input-box">
+                    <input type="text" id="message-input" placeholder="Type a message...">
+                    <button onclick="sendMessage()">Send</button>
+                </div>
+            </div>
+        </div>
+
+
+        <div id="travel-photography" class="content-section" style="display: none;">
+            <div class="main-content">
+                <div class="card">
+                    <h2>Travel and Photography</h2>
+                    <p>Share and explore amazing travel and photography experiences.</p>
+                </div>
+            </div>
+        </div>
+        <div id="organize-events" class="content-section" style="display: none;">
+            <div class="main-content">
+                <div class="card">
+                    <h2>Organize Events</h2>
+                    <p>Plan and discuss upcoming events.</p>
+                </div>
+            </div>
+        </div>
+        <div id="pop-culture" class="content-section" style="display: none;">
+            <div class="main-content">
+                <div class="card">
+                    <h2>POP Culture</h2>
+                    <p>Discuss movies, music, and everything pop culture.</p>
+                </div>
+            </div>
+        </div>
+        <div id="alumni-contact" class="content-section" style="display: none;">
+            <div class="main-content">
+                <div class="card">
+                    <h2>Alumni Contact</h2>
+                    <p>Connect with alumni for guidance and networking.</p>
+                </div>
+            </div>
+        </div>
+        <div id="tech-members" class="content-section" style="display: none;">
+            <div class="main-content">
+                <div class="card">
+                    <h2>Tech Members</h2>
+                    <p>Meet and collaborate with tech enthusiasts.</p>
+                </div>
+            </div>
+        </div>
+        <div id="tech-posts" class="content-section" style="display: none;">
+            <div class="main-content">
+                <div class="card">
+                    <h2>Tech Posts</h2>
+                    <p>Stay updated with the latest tech trends and news.</p>
+                </div>
+            </div>
+        </div>
+        <div id="tech-chat" class="content-section" style="display: none;">
+            <div class="main-content">
+                <div class="card">
+                    <h2>Tech Chat</h2>
+                    <p>Discuss and share knowledge on technology topics.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.3.2/socket.io.js"></script>
+    <script>
+        function showSection(sectionId) {
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.style.display = 'none';
+            });
+            document.getElementById(sectionId).style.display = 'block';
+            document.querySelectorAll('.sidebar-list li').forEach(item => {
+                item.classList.remove('active');
+            });
+            let activeItem = document.querySelector(`li[onclick="showSection('${sectionId}')"]`);
+            if (activeItem) {
+                activeItem.classList.add('active');
+            }
+        }
+
+        var socket = io.connect("http://127.0.0.1:5000");
+
+        function sendMessage() {
+            let message = document.getElementById("message-input").value; 
+            let senderName = "{{ session['name'] }}";
+            let senderId = "{{ session['uid'] }}";
+
+            if (message.trim() !== "") {
+                socket.emit("message", {
+                    message: message,
+                    sender_name: senderName,
+                    sender_id: senderId
+                });
+
+                document.getElementById("message-input").value = ""; 
+            }
+        }
+
+        socket.on("message", function (data) {
+            let chatBox = document.getElementById("chat-box");
+            let newMessage = document.createElement("div");
+
+            let senderId = "{{ session['uid'] }}";
+            let messageClass = (data.sender_id == senderId) ? "sent" : "received";
+
+            newMessage.classList.add("message", messageClass);
+            newMessage.innerHTML = `<strong>${data.sender_name}:</strong> ${data.message}`;
+
+            chatBox.appendChild(newMessage);
+            chatBox.scrollTop = chatBox.scrollHeight;
+        });
+
+        function loadChatHistory() {
+            fetch("/get_messages")
+                .then(response => response.json())
+                .then(messages => {
+                    let chatBox = document.getElementById("chat-box");
+                    chatBox.innerHTML = "";
+                    let senderId = "{{ session['uid'] }}";
+
+                    messages.forEach(msg => {
+                        let newMessage = document.createElement("div");
+
+                        let messageClass = (msg.sender_id == senderId) ? "sent" : "received";
+                        newMessage.classList.add("message", messageClass);
+
+                        newMessage.innerHTML = `<strong>${msg.sender_name}:</strong> ${msg.message}`;
+                        chatBox.appendChild(newMessage);
+                    });
+                    chatBox.scrollTop = chatBox.scrollHeight;
+                })
+                .catch(error => console.error("Error loading chat history:", error));
+        }
+
+
+        window.onload = function () {
+            loadChatHistory();
+        };
+
+        function openProfile() {
+            document.getElementById("profileModal").style.display = "block";
+        }
+
+        function closeProfile() {
+            document.getElementById("profileModal").style.display = "none";
+        }
+
+        window.onclick = function (event) {
+            if (event.target == document.getElementById("profileModal")) {
+                closeProfile();
+            }
+        }
+    </script>
+
+</body>
+
+</html>

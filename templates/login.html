@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Audiowide&family=Notable&family=Protest+Riot&family=Turret+Road:wght@200;300;400;500;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css')}}" />
+</head>
+
+<body>
+
+    <div class="text-container" id="campusPingText">Campus Ping</div>
+    <div class="shuriken" id="shuriken">✦</div>
+
+
+    <div class="login-container" id="loginContainer">
+        <div class="login-box">
+            <h2>Welcome!</h2>
+            <p>Please enter your details</p>
+            <form method="POST" action="/">
+                <input type="text" name="uid" placeholder="Email or Username" required>
+                <input type="password" name="Password" placeholder="Password" required>
+                {% if error %}
+                        <div class="error-message" style="color: red; font-size: 14px;">
+                {{ error }}
+                </div>
+                {% endif %}
+                <button type="submit" class="login-btn">Log In</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            setTimeout(() => {
+                const campusPingText = document.getElementById('campusPingText');
+                const shuriken = document.getElementById('shuriken');
+                const loginContainer = document.getElementById('loginContainer');
+
+                campusPingText.style.opacity = '0';
+
+                shuriken.style.animation = 'moveShuriken 2s ease-in-out forwards';
+
+                setTimeout(() => {
+                    campusPingText.style.display = 'none';
+                    loginContainer.style.display = 'flex';
+                    loginContainer.classList.add('show-login');
+                }, 2000); 
+            }, 1000); 
+        });
+
+        function showCampusPing() {
+            const username = document.querySelector('input[name="uid"]').value;
+            const password = document.querySelector('input[name="Password"]').value;
+
+            if (username && password) {
+                const loginContainer = document.getElementById('loginContainer');
+                const campusPingText = document.getElementById('campusPingText');
+
+                loginContainer.classList.add('blurred');
+                campusPingText.style.display = 'block';
+                campusPingText.classList.add('text-black');
+                campusPingText.style.opacity = '1';
+
+                setTimeout(() => {
+                    campusPingText.style.opacity = '0';
+
+                    setTimeout(() => {
+                        campusPingText.style.display = 'none';
+                        loginContainer.classList.remove('blurred');
+                    }, 500);
+                }, 3000);
+            }
+        }
+
+    </script>
+</body>
+</html>
